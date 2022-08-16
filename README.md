@@ -39,8 +39,8 @@ client_secret=YOUR_CLIENT_SECRET
 model = MODEL_TO_BE_USED
 view = EXPLORE_TO_BE_USED
 field = FIELD_TO_BE_USED (in the format: view_name.field_name) # status in our case
-dashboard_id="DASHBOARD_ID_FROM_URL"
-dashboard_filters="filter part of the url"
+dashboard_id=dashboard_id --> you can take that from the url
+dashboard_filters="filter part of the url" --> example format: "Status="
 
 [OutputSettings]
 result_format=pdf
