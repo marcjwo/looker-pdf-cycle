@@ -20,10 +20,9 @@ def getCategories():
 
 def createRenderTask(filters):
   renders = []
-  db_filter = CONFIG['LookML']['dashboard_filters'][:-1]
   for f in filters:
     body = {
-              "dashboard_filters": f'''"{db_filter}{f}"''',
+              "dashboard_filters": f"{CONFIG['LookML']['dashboard_filters']}={f}",
               "dashboard_style": "single_column"
             }
     response = sdk.create_dashboard_render_task(
@@ -82,8 +81,13 @@ def mergePdf(files,filename):
     os.remove(pdf)
   mergeFile.write(filename)
 
+def getFilename():
+  response = input("Please define a filename:")
+  response = response+".pdf"
+  return response
+
 def main():
-  filename = "output.pdf"
+  filename = getFilename()
   categories = getCategories()
   jobs = createRenderTask(categories)
   prod_id = waitUntilComplete(jobs)
